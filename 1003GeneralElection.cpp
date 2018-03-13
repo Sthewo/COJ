@@ -13,7 +13,7 @@ void getCandidatesAndRegions( int &candidate, int &region );
 
 void getVotesCandidate( std::vector< std::vector<int> > candidateVotes, int regions, int candidates );
 int countVotesCandidate( std::vector< std::vector<int> > candidateVotes, int regions, int candidates );
-void printWiner( std::vector< int > totalVotes );
+void printWiner( std::vector< int > totalVotes, int candidates );
 
 int main(){
 
@@ -27,12 +27,13 @@ int main(){
 	getVotesCandidate( candidatesVotes, regions, candidates );
 	
 
-	std::vector<int> votes( candidates );
+	std::vector<int> totalVotes( candidates );
 	for( int i = 0; i < regions; i++ ){
-		votes[i] = countVotesCandidate( candidatesVotes, regions, candidates );
+		totalVotes[i] = countVotesCandidate( candidatesVotes, regions, candidates );
 	}
+	std::cout << "Hola mundo" <<std::endl;
 
-	printWiner( votes );
+	printWiner( totalVotes, candidates );
 
 	return 0;
 }
@@ -58,18 +59,26 @@ void getVotesCandidate( std::vector< std::vector<int> > votes, int candidates, i
 
 int countVotesCandidate( std::vector< std::vector<int> > votes, int regions, int candidates ){
 	int totalVotes = 0;
-	for ( int i = 0; i < candidates; i++ ){
-		totalVotes = votes[i][regions] + totalVotes;
+	for ( int i = 0; i < regions; i++ ){
+		totalVotes = votes[candidates][i] + totalVotes;
 	}
 
 	return totalVotes;
 }
 
-void printWiner( std::vector< int > totalVotes ){
-	for( int i = 1; i < totalVotes.size() ; i++ ){
-		if( totalVotes[i-1] > totalVotes[i] ){
-			std::swap( totalVotes[i-1], totalVotes[i] );
+void printWiner( std::vector< int > totalVotes, int candidates ){
+	std::cout << "Hola mundo" <<std::endl;
+	int winer = 0;
+	int winerVotes = 0;
+	for( int i = 1; i < candidates ; i++ ){
+		if( totalVotes[i] > winerVotes ){
+			winer = i;
+			winerVotes = totalVotes[i];
 		}
+
 	}
+
+	std::cout << winer << std::endl;
+	std::cout << "Hola mundo" <<std::endl;
 }
 
