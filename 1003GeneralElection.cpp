@@ -9,8 +9,6 @@ int getTest();
 //Pass de variables like output. Insede de function the variables,
 //the 
 void getCandidatesAndRegions( int &candidate, int &region );
-
-
 void getVotesCandidate( std::vector< std::vector<int> > candidateVotes, int regions, int candidates );
 int countVotesCandidate( std::vector< std::vector<int> > candidateVotes, int regions, int candidates );
 void printWiner( std::vector< int > totalVotes, int candidates );
@@ -27,11 +25,10 @@ int main(){
 	getVotesCandidate( candidatesVotes, regions, candidates );
 	
 
-	std::vector<int> totalVotes( candidates );
-	for( int i = 0; i < regions; i++ ){
-		totalVotes[i] = countVotesCandidate( candidatesVotes, regions, candidates );
+	std::vector<int> totalVotes{0};
+	for( int i = 0; i < candidates; i++ ){
+		totalVotes[i] =  countVotesCandidate( candidatesVotes, regions, i );
 	}
-	std::cout << "Hola mundo" <<std::endl;
 
 	printWiner( totalVotes, candidates );
 
@@ -67,7 +64,6 @@ int countVotesCandidate( std::vector< std::vector<int> > votes, int regions, int
 }
 
 void printWiner( std::vector< int > totalVotes, int candidates ){
-	std::cout << "Hola mundo" <<std::endl;
 	int winer = 0;
 	int winerVotes = 0;
 	for( int i = 1; i < candidates ; i++ ){
@@ -79,6 +75,5 @@ void printWiner( std::vector< int > totalVotes, int candidates ){
 	}
 
 	std::cout << winer << std::endl;
-	std::cout << "Hola mundo" <<std::endl;
 }
 
